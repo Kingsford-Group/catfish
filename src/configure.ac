@@ -4,7 +4,7 @@
 AC_PREREQ([2.69])
 AC_INIT(catfish, 1.0, mingfu.shao@cs.cmu.edu)
 AM_INIT_AUTOMAKE()
-AC_CONFIG_SRCDIR([src/boundary.h])
+AC_CONFIG_SRCDIR([src/catfish.h])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
