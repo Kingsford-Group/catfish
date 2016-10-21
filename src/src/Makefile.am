@@ -4,9 +4,9 @@ GTFDIR = ../../lib/gtf/src
 UTILDIR = ../../lib/util/src
 GRAPHDIR = ../../lib/graph/src
 
-catfish_CPPFLAGS = -std=c++11 -I$(HTSLIB) -I$(GUROBI_HOME)/include -I$(BOOST_HOME) -I$(GTFDIR) -I$(GRAPHDIR) -I$(UTILDIR)
-catfish_LDFLAGS = -L$(HTSLIB) -L$(GUROBI_HOME)/lib -L$(GTFDIR) -L$(GRAPHDIR) -L$(UTILDIR) -pthread
-catfish_LDADD = -lhts -lz -lgurobi_c++ -lgurobi -lgtf -lgraph -lutil
+catfish_CPPFLAGS = -std=c++11 -I$(BOOST_HOME) -I$(GTFDIR) -I$(GRAPHDIR) -I$(UTILDIR)
+catfish_LDFLAGS = -L$(GTFDIR) -L$(GRAPHDIR) -L$(UTILDIR) -pthread
+catfish_LDADD = -lgtf -lgraph -lutil
 
 catfish_SOURCES = splice_graph.h splice_graph.cc \
 				  sgraph_compare.h sgraph_compare.cc \
