@@ -1,1 +1,2 @@
-catfish implements an efficient heuristic to decompose a given flow into a set of minimum number of paths
+Catfish implements an efficient heuristic to decompose a given flow into a set of minimum number of paths.
+Reference manual is at doc/manual/catfish.pdf.
