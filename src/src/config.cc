@@ -15,12 +15,12 @@ int max_dp_table_size = 10000;
 int max_num_subsetsum_solutions = 10;
 
 // for simulation
-int simulation_num_vertices = 0;
-int simulation_num_edges = 0;
-int simulation_max_edge_weight = 0;
+int simulation_num_vertices = 10;
+int simulation_num_edges = 10;
+int simulation_max_edge_weight = 100;
 
 //// from command line
-string algo;
+string algo = "full";
 string input_file;
 string output_file;
 string ref_file;
@@ -56,10 +56,8 @@ int print_parameters()
 	return 0;
 }
 
-bool parse_arguments(int argc, const char ** argv)
+int parse_arguments(int argc, const char ** argv)
 {
-	output_tex_files = false;
-	bool b = false;
 	for(int i = 1; i < argc; i++)
 	{
 		if(string(argv[i]) == "-a")
@@ -97,7 +95,6 @@ bool parse_arguments(int argc, const char ** argv)
 			i++;
 		}
 	}
-
-	return b;
+	return 0;
 }
 

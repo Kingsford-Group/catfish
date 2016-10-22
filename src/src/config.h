@@ -32,10 +32,7 @@ extern bool output_tex_files;
 extern int min_gtf_transcripts_num;
 
 // parse arguments
-bool parse_arguments(int argc, const char ** argv);
+int parse_arguments(int argc, const char ** argv);
 int print_parameters();
-
-// load parameters
-int load_config(const char * conf_file);
 
 #endif

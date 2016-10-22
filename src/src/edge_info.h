@@ -9,11 +9,8 @@ public:
 	edge_info(const edge_info &ei);
 
 public:
-	double stddev;
 	int length;
-	bool infer;
 	int type;
-	int jid;		// junction id
 };
 
 #endif

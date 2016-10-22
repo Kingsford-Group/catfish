@@ -174,16 +174,9 @@ int splice_graph::build(const string &file)
 
 	for(int i = 0; i < n; i++)
 	{
-		char name[10240];
-		double weight;
-		vertex_info vi;
-		fin.getline(line, 10240, '\n');	
-		stringstream sstr(line);
-		sstr>>name>>weight>>vi.length;
-
 		add_vertex();
-		set_vertex_weight(i, weight);
-		set_vertex_info(i, vi);
+		set_vertex_weight(i, 0);
+		set_vertex_info(i, vertex_info());
 	}
 
 	while(fin.getline(line, 10240, '\n'))
@@ -192,7 +185,7 @@ int splice_graph::build(const string &file)
 		double weight;
 		edge_info ei;
 		stringstream sstr(line);
-		sstr>>x>>y>>weight>>ei.length;
+		sstr>>x>>y>>weight;
 
 		assert(x != y);
 		assert(x >= 0 && x < num_vertices());
@@ -221,14 +214,6 @@ int splice_graph::write(const string &file) const
 	int n = num_vertices();
 	
 	fin<<n<<endl;
-	for(int i = 0; i < n; i++)
-	{
-		string name = "TODO";
-		double weight = get_vertex_weight(i);
-		vertex_info vi = get_vertex_info(i);
-		fin<<name.c_str()<<" "<<weight<<" "<<vi.length<<endl;
-	}
-
 	edge_iterator it1, it2;
 	for(tie(it1, it2) = edges(); it1 != it2; it1++)
 	{
@@ -236,7 +221,7 @@ int splice_graph::write(const string &file) const
 		int t = (*it1)->target();
 		double weight = get_edge_weight(*it1);
 		edge_info ei = get_edge_info(*it1);
-		fin<<s<<" "<<t<<" "<<weight<<" "<<ei.length<<endl;
+		fin<<s<<" "<<t<<" "<<weight<<endl;
 	}
 	fin.close();
 	return 0;
