@@ -20,5 +20,4 @@ catfish_SOURCES = splice_graph.h splice_graph.cc \
 				  equation.h equation.cc \
 				  gtf.h gtf.cc \
 				  catfish.h catfish.cc \
-				  assembler.h assembler.cc \
 				  main.cc
