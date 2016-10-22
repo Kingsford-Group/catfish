@@ -6,6 +6,7 @@
 #include <cstdio>
 #include <iostream>
 #include <cfloat>
+#include <fstream>
 #include <boost/graph/push_relabel_max_flow.hpp>
 #include <boost/graph/adjacency_list.hpp>
 
@@ -1453,3 +1454,18 @@ int catfish::draw_splice_graph(const string &file)
 	return 0;
 }
 
+int catfish::write(const string &file)
+{
+	ofstream fout(file.c_str());
+	for(int i = 0; i < paths.size(); i++)
+	{
+		fout <<"path " << i + 1 << ", weight = " << (int)(paths[i].abd) << ", vertices = ";
+		for(int k = 0; k < paths[i].v.size(); k++)
+		{
+			fout << paths[i].v[k] << " ";
+		}
+		fout << endl;
+	}
+	fout.close();
+	return 0;
+}

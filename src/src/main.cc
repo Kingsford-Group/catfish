@@ -78,8 +78,9 @@ int assemble_sgr(const string &file)
 	splice_graph sg;
 	sg.build(file);
 
-	catfish sc("shao", sg);
+	catfish sc("catfish", sg);
 	sc.assemble();
+	if(output_file != "") sc.write(output_file);
 
 	return 0;
 }

@@ -37,18 +37,19 @@ public:
 	vector<path> paths;		// predicted transcripts
 
 public:
+	int assemble();
+	int write(const string &file);
+
+private:
 	int clear();
 	int save(catfish &sc);
 	int load(catfish &sc);
 
-public:
-	int assemble();
 	int assemble0();
 	int assemble1();
 	int assemble2();
 	int greedy();
 
-private:
 	// iteratively decompose
 	int iterate();
 	bool decompose_trivial_vertices();
