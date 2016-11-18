@@ -10,6 +10,7 @@ gtf::gtf(const gene &g)
 int gtf::build_splice_graph(splice_graph &gr)
 {
 	build_split_interval_map();
+	build_transcript_paths();
 	add_vertices(gr);
 	add_edges(gr);
 	return 0;
@@ -62,14 +63,17 @@ int gtf::add_vertices(splice_graph &gr)
 	return 0;
 }
 
-int gtf::add_edges(splice_graph &gr)
+int gtf::build_transcript_paths()
 {
+	tpaths.clear();
+	int n = distance((SIMI)(imap.begin()), (SIMI)(imap.end())) + 2;
 	for(int i = 0; i < transcripts.size(); i++)
 	{
+		path p;
 		transcript &tt = transcripts[i];
 		assert(tt.exons.size() >= 1);
-		int32_t expr = tt.expression;
-		int u = 0;
+		p.abd = tt.expression;
+		p.v.push_back(0);
 		for(int k = 0; k < tt.exons.size(); k++)
 		{
 			PI32 &ge = tt.exons[k];
@@ -78,13 +82,29 @@ int gtf::add_edges(splice_graph &gr)
 			while(true)
 			{
 				int uu = distance((SIMI)(imap.begin()), it) + 1;
-				add_single_edge(u, uu, expr, gr);
-				u = uu;
+				p.v.push_back(uu);
 				if(upper(it->first) >= ge.second) break;
 				it++;
 			}
 		}
-		add_single_edge(u, gr.num_vertices() -1, expr, gr);
+		p.v.push_back(n - 1);
+		tpaths.push_back(p);
+	}
+	return 0;
+}
+
+int gtf::add_edges(splice_graph &gr)
+{
+	for(int i = 0; i < tpaths.size(); i++)
+	{
+		int32_t expr = tpaths[i].abd;
+		vector<int> &v = tpaths[i].v;
+		assert(v[0] == 0);
+		assert(v[v.size() - 1] == gr.num_vertices() - 1);
+		for(int k = 0; k < v.size() - 1; k++)
+		{
+			add_single_edge(v[k], v[k + 1], expr, gr);
+		}
 	}
 	return 0;
 }
@@ -180,5 +200,19 @@ int gtf::output_gtf(ofstream &fout, const vector<path> &paths, const string &pre
 int gtf::output_gtf(ofstream &fout) const
 {
 	write(fout);
+	return 0;
+}
+
+int gtf::write_transcript_paths(ofstream &fout) 
+{
+	//fout << tpaths.size() << endl;
+	for(int i = 0; i < tpaths.size(); i++)
+	{
+		int32_t abd = tpaths[i].abd;
+		vector<int> &v = tpaths[i].v;
+		fout<< abd << " ";
+		for(int k = 0; k < v.size(); k++) fout<< v[k] << " ";
+		fout<<endl;
+	}
 	return 0;
 }

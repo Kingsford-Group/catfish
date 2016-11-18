@@ -202,18 +202,19 @@ int splice_graph::build(const string &file)
 
 int splice_graph::write(const string &file) const
 {
-	ofstream fin(file.c_str());
-	if(fin.fail()) 
-	{
-		printf("open file %s error\n", file.c_str());
-		return 0;
-	}
-	
-	fin<<fixed;
-	fin.precision(2);
+	ofstream fout(file.c_str());
+	write(fout);
+	fout.close();
+	return 0;
+}
+
+int splice_graph::write(ofstream &fout) const
+{
+	fout<<fixed;
+	fout.precision(2);
 	int n = num_vertices();
 	
-	fin<<n<<endl;
+	fout<<n<<endl;
 	edge_iterator it1, it2;
 	for(tie(it1, it2) = edges(); it1 != it2; it1++)
 	{
@@ -221,9 +222,8 @@ int splice_graph::write(const string &file) const
 		int t = (*it1)->target();
 		double weight = get_edge_weight(*it1);
 		edge_info ei = get_edge_info(*it1);
-		fin<<s<<" "<<t<<" "<<weight<<endl;
+		fout<<s<<" "<<t<<" "<<weight<<endl;
 	}
-	fin.close();
 	return 0;
 }
 

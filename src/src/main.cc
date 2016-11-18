@@ -18,6 +18,7 @@ using namespace std;
 
 int assemble_gtf(const string &file);
 int assemble_sgr(const string &file);
+int format(const string &file);
 
 int main(int argc, const char **argv)
 {
@@ -33,11 +34,20 @@ int main(int argc, const char **argv)
 		return 0;
 	}
 
+	if(input_file != "" && algo == "format" && output_file != "")
+	{
+		string s = input_file.substr(input_file.size() - 3, 3);
+		if(s != "gtf") return 0;
+		format(input_file);
+		return 0;
+	}
+
 	if(input_file != "")
 	{
 		string s = input_file.substr(input_file.size() - 3, 3);
 		if(s == "gtf") assemble_gtf(input_file);
 		if(s == "sgr") assemble_sgr(input_file);
+		return 0;
 	}
 	return 0;
 }
@@ -84,3 +94,32 @@ int assemble_sgr(const string &file)
 
 	return 0;
 }
+
+int format(const string &file)
+{
+	genome g(file);
+
+	ofstream fout1(output_file + ".graph");
+	ofstream fout2(output_file + ".truth");
+
+	for(int i = 0; i < g.genes.size(); i++)
+	{
+		gtf gg(g.genes[i]);
+
+		string name = gg.get_gene_id();
+
+		fout1 << "# graph number = " << i << " name = " << name.c_str() << endl;
+		fout2 << "# graph number = " << i << " name = " << name.c_str() << endl;
+
+		splice_graph gr;
+		gg.build_splice_graph(gr);
+
+		gr.write(fout1);
+		gg.write_transcript_paths(fout2);
+	}
+
+	fout1.close();
+	fout2.close();
+	return 0;
+}
+

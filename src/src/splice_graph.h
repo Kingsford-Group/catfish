@@ -52,6 +52,7 @@ public:
 	// read, write, and simulate splice graph
 	int build(const string &file);
 	int write(const string &file) const;
+	int write(ofstream &fout) const;
 	int simulate(int nv, int ne, int mf);
 
 	// analysis the structure of splice graph
