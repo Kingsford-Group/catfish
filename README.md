@@ -5,7 +5,7 @@ Please refer to our paper at [here](http://biorxiv.org/content/early/2016/11/16/
 The datasets used in this paper can be found at [here](https://cmu.box.com/s/p687exyr279wny7fb2rb36wifvavvu3f).
 
 # Release
-Latest release, including both binary and source code, is [here](https://github.com/shaomingfu/catfish/releases/tag/v0.1.2).
+Latest release, including both binary and source code, is [here](https://github.com/Kingsford-Group/catfish/releases/tag/v0.1.4).
 
 
 # Installation
