@@ -1,3 +1,9 @@
+/*
+Part of Catfish
+(c) 2017 by  Mingfu Shao, Carl Kingsford, and Carnegie Mellon University.
+See LICENSE for licensing.
+*/
+
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -22,9 +28,16 @@ int format(const string &file);
 
 int main(int argc, const char **argv)
 {
+	if(argc == 1)
+	{
+		print_copyright();
+		print_help();
+		return 0;
+	}
+
 	srand(time(0));
 	parse_arguments(argc, argv);
-	print_parameters();
+	//print_parameters();
 
 	if(input_file == "" && output_file != "")
 	{

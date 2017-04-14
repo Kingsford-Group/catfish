@@ -1,3 +1,9 @@
+/*
+Part of Catfish
+(c) 2017 by  Mingfu Shao, Carl Kingsford, and Carnegie Mellon University.
+See LICENSE for licensing.
+*/
+
 #include "interval_map.h"
 
 int create_split(split_interval_map &imap, int32_t p)

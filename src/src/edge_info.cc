@@ -1,3 +1,9 @@
+/*
+Part of Catfish
+(c) 2017 by  Mingfu Shao, Carl Kingsford, and Carnegie Mellon University.
+See LICENSE for licensing.
+*/
+
 #include "edge_info.h"
 
 edge_info::edge_info()

@@ -1,3 +1,9 @@
+/*
+Part of Catfish
+(c) 2017 by  Mingfu Shao, Carl Kingsford, and Carnegie Mellon University.
+See LICENSE for licensing.
+*/
+
 #ifndef __GENOME1_H__
 #define __GENOME1_H__
 

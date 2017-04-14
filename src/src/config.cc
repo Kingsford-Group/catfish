@@ -1,3 +1,9 @@
+/*
+Part of Catfish
+(c) 2017 by  Mingfu Shao, Carl Kingsford, and Carnegie Mellon University.
+See LICENSE for licensing.
+*/
+
 #include "config.h"
 #include <cstdlib>
 #include <iostream>
@@ -20,6 +26,7 @@ int simulation_num_edges = 10;
 int simulation_max_edge_weight = 100;
 
 //// from command line
+string version = "v0.1.4";
 string algo = "full";
 string input_file;
 string output_file;
@@ -75,6 +82,17 @@ int parse_arguments(int argc, const char ** argv)
 			output_file = string(argv[i + 1]);
 			i++;
 		}
+		else if(string(argv[i]) == "-v")
+		{
+			printf("%s\n", version.c_str());
+			exit(0);
+		}
+		else if(string(argv[i]) == "-h")
+		{
+			print_copyright();
+			print_help();
+			exit(0);
+		}
 		else if(string(argv[i]) == "-r")
 		{
 			ref_file = string(argv[i + 1]);
@@ -98,3 +116,49 @@ int parse_arguments(int argc, const char ** argv)
 	return 0;
 }
 
+int print_command_line(int argc, const char ** argv)
+{
+	printf("command line: ");
+	for(int i = 0; i < argc; i++)
+	{
+		printf("%s ", argv[i]);
+	}
+	printf("\n");
+	return 0;
+}
+
+
+int print_help()
+{
+	printf("\n");
+	printf("Usage: catfish -i <input.sgr|input.gtf> -o <output-file> [-a core|full|greedy] [-h] [-v]\n");
+	printf("\n");
+	printf(" %-28s  %s\n", "-i <input.sgr|input.gtf>",  "input file specifying graph, supporting two formats:");
+	printf(" %-28s  %s\n", "",  ".sgr specifies a directed acyclic graph. The first line gives n,");
+	printf(" %-28s  %s\n", "",  "indicating the number of vertices in the graph. The vertices are");
+	printf(" %-28s  %s\n", "",  "named from 0 to (n - 1), where vertex 0 has to be the source vertex");
+	printf(" %-28s  %s\n", "",  "and vertex (n - 1) has to be the sink vertex. Each of the following");
+	printf(" %-28s  %s\n", "",  "line specifies an edge, which consists of three integers: in-vertex,");
+	printf(" %-28s  %s\n", "",  "out-vertex and the weight of this edge.");
+	printf(" %-28s  %s\n", "",  ".gtf is the standard GTF (General Transfer Format). For this format");
+	printf(" %-28s  %s\n", "",  "Catfish will merge all transcripts for each gene into splice graph,");
+	printf(" %-28s  %s\n", "",  "and then try to decompose it.");
+	printf(" %-28s  %s\n", "-o <output-file>",  "output-file with decomposed paths and their weights");
+	printf(" %-28s  %s\n", "-a <core|full|greedy>",  "With option of core, the program will only run the core algorithm to");
+	printf(" %-28s  %s\n", "",  "(partially) decompose the given splice graph, which will predict fewer");
+	printf(" %-28s  %s\n", "",  "paths but with higher accuracy. With option of full, the program will");
+	printf(" %-28s  %s\n", "",  "completely decompose the given splice graph, using greedy algorithm ");
+	printf(" %-28s  %s\n", "",  "following the core part of the algorithm. With option of greedy, the");
+	printf(" %-28s  %s\n", "",  "program will use greedy algorithm to fully decompose the given graph. ");
+	printf(" %-28s  %s\n", "",  "This parameter is optional, and its default value is full.");
+	printf(" %-28s  %s\n", "-h",  "print usage of Catfish and exit");
+	printf(" %-28s  %s\n", "-v",  "print current version of Catfish and exit");
+
+	return 0;
+}
+
+int print_copyright()
+{
+	printf("Catfish %s (c) 2017 Mingfu Shao, Carl Kingsford, and Carnegie Mellon University\n", version.c_str());
+	return 0;
+}

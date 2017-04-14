@@ -1,3 +1,9 @@
+/*
+Part of Catfish
+(c) 2017 by  Mingfu Shao, Carl Kingsford, and Carnegie Mellon University.
+See LICENSE for licensing.
+*/
+
 #ifndef __CONFIG_H__
 #define __CONFIG_H__
 
@@ -26,6 +32,7 @@ extern string input_file;
 extern string output_file;
 extern string ref_file;
 extern string fixed_gene_name;
+extern string version;
 
 extern bool fast_mode;
 extern bool output_tex_files;
@@ -34,5 +41,8 @@ extern int min_gtf_transcripts_num;
 // parse arguments
 int parse_arguments(int argc, const char ** argv);
 int print_parameters();
+int print_command_line(int argc, const char ** argv);
+int print_copyright();
+int print_help();
 
 #endif
