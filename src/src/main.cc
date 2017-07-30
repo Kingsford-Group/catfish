@@ -98,12 +98,54 @@ int assemble_gtf(const string &file)
 
 int assemble_sgr(const string &file)
 {
-	splice_graph sg;
-	sg.build(file);
+	ifstream fin(file);
+	if(fin.fail()) return 0;
 
-	catfish sc("catfish", sg);
-	sc.assemble();
-	if(output_file != "") sc.write(output_file);
+	ofstream fout;
+	if(output_file != "") fout.open(output_file);
+
+	char buf[10240];
+	string header;
+	stringstream sstr;
+	while(fin.getline(buf, 10240, '\n'))
+	{
+		string s(buf);
+		if(s.size() == 0) continue;
+		if(s[0] == '#')
+		{
+			if(header != "")
+			{
+				splice_graph sg;
+				sg.build(sstr);
+
+				catfish sc("catfish", sg);
+				sc.assemble();
+				if(output_file != "") fout << header.c_str() << " paths = " << sc.paths.size() << endl;
+				if(output_file != "") sc.write(fout);
+			}
+
+			sstr.clear();
+			header = s;
+		}
+		else
+		{
+			sstr << s << "\n";
+		}
+	}
+
+	if(header != "")
+	{
+		splice_graph sg;
+		sg.build(sstr);
+
+		catfish sc("catfish", sg);
+		sc.assemble();
+		if(output_file != "") fout << header.c_str() << " paths = " << sc.paths.size() << endl;
+		if(output_file != "") sc.write(fout);
+	}
+
+	fin.close();
+	if(output_file != "") fout.close();
 
 	return 0;
 }

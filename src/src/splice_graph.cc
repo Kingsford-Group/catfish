@@ -173,9 +173,17 @@ int splice_graph::build(const string &file)
 		return 0;
 	}
 
+	build(fin);
+
+	fin.close();
+	return 0;
+}
+
+int splice_graph::build(istream &ist)
+{
 	char line[10240];
 	// get the number of vertices
-	fin.getline(line, 10240, '\n');	
+	ist.getline(line, 10240, '\n');	
 	int n = atoi(line);
 
 	for(int i = 0; i < n; i++)
@@ -185,7 +193,7 @@ int splice_graph::build(const string &file)
 		set_vertex_info(i, vertex_info());
 	}
 
-	while(fin.getline(line, 10240, '\n'))
+	while(ist.getline(line, 10240, '\n'))
 	{
 		int x, y;
 		double weight;
@@ -202,9 +210,10 @@ int splice_graph::build(const string &file)
 		set_edge_info(p, ei);
 	}
 
-	fin.close();
 	return 0;
 }
+
+
 
 int splice_graph::write(const string &file) const
 {

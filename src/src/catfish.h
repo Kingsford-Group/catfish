@@ -45,6 +45,7 @@ public:
 public:
 	int assemble();
 	int write(const string &file);
+	int write(ofstream &fout);
 
 private:
 	int clear();

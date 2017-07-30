@@ -13,6 +13,7 @@ See LICENSE for licensing.
 
 #include <map>
 #include <cassert>
+#include <istream>
 
 #define SMIN 0.00001
 
@@ -57,6 +58,7 @@ public:
 
 	// read, write, and simulate splice graph
 	int build(const string &file);
+	int build(istream &ist);
 	int write(const string &file) const;
 	int write(ofstream &fout) const;
 	int simulate(int nv, int ne, int mf);

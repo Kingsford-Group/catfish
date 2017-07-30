@@ -244,7 +244,7 @@ int catfish::assemble1()
 	collect_existing_st_paths();
 	//print();
 
-	printf("%s core solution %lu paths, iteration = %d\n", name.c_str(), paths.size(), f);
+	printf("%s core solution %lu paths, iteration = %d\n\n", name.c_str(), paths.size(), f);
 
 	return 0;
 }
@@ -260,7 +260,7 @@ int catfish::assemble2()
 
 	//print();
 
-	printf("%s full solution %lu paths, iteration = %d\n", name.c_str(), paths.size(), f);
+	printf("%s full solution %lu paths, iteration = %d\n\n", name.c_str(), paths.size(), f);
 
 	return 0;
 }
@@ -274,7 +274,7 @@ int catfish::greedy()
 
 	//print();
 
-	printf("%s greedy solution %lu paths\n", name.c_str(), paths.size());
+	printf("%s greedy solution %lu paths\n\n", name.c_str(), paths.size());
 
 	return 0;
 }
@@ -1462,6 +1462,13 @@ int catfish::draw_splice_graph(const string &file)
 int catfish::write(const string &file)
 {
 	ofstream fout(file.c_str());
+	write(fout);
+	fout.close();
+	return 0;
+}
+
+int catfish::write(ofstream &fout)
+{
 	for(int i = 0; i < paths.size(); i++)
 	{
 		fout <<"path " << i + 1 << ", weight = " << (int)(paths[i].abd) << ", vertices = ";
@@ -1471,6 +1478,5 @@ int catfish::write(const string &file)
 		}
 		fout << endl;
 	}
-	fout.close();
 	return 0;
 }
