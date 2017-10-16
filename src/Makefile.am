@@ -5,7 +5,7 @@ UTILDIR = ../lib/util
 GRAPHDIR = ../lib/graph
 
 catfish_CPPFLAGS = -std=c++11 -I$(GTFDIR) -I$(GRAPHDIR) -I$(UTILDIR)
-catfish_LDFLAGS = -L$(GTFDIR) -L$(GRAPHDIR) -L$(UTILDIR) -pthread
+catfish_LDFLAGS = -L$(GTFDIR) -L$(GRAPHDIR) -L$(UTILDIR)
 catfish_LDADD = -lgtf -lgraph -lutil
 
 catfish_SOURCES = splice_graph.h splice_graph.cc \
