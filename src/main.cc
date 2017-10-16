@@ -22,9 +22,8 @@ See LICENSE for licensing.
 
 using namespace std;
 
-int assemble_gtf(const string &file);
-int assemble_sgr(const string &file);
-int format(const string &file);
+int assemble(const string &file);
+int transform(const string &file);
 
 int main(int argc, const char **argv)
 {
@@ -39,7 +38,7 @@ int main(int argc, const char **argv)
 	parse_arguments(argc, argv);
 	//print_parameters();
 
-	if(input_file == "" && output_file != "")
+	if(input_file == "" && output_file != "" && algo == "simulate")
 	{
 		splice_graph sg;
 		sg.simulate(simulation_num_vertices, simulation_num_edges, simulation_max_edge_weight);
@@ -47,56 +46,22 @@ int main(int argc, const char **argv)
 		return 0;
 	}
 
-	if(input_file != "" && algo == "format" && output_file != "")
+	if(input_file != "" && output_file != "" && algo == "transform")
 	{
 		string s = input_file.substr(input_file.size() - 3, 3);
 		if(s != "gtf") return 0;
-		format(input_file);
+		transform(input_file);
 		return 0;
 	}
 
 	if(input_file != "")
 	{
-		string s = input_file.substr(input_file.size() - 3, 3);
-		if(s == "gtf") assemble_gtf(input_file);
-		if(s == "sgr") assemble_sgr(input_file);
-		return 0;
+		assemble(input_file);
 	}
 	return 0;
 }
 
-int assemble_gtf(const string &file)
-{
-	genome g(file);
-
-	ofstream fout;
-	if(output_file != "") fout.open(output_file);
-
-	for(int i = 0; i < g.genes.size(); i++)
-	{
-		gtf gg(g.genes[i]);
-
-		if(gg.transcripts.size() < min_gtf_transcripts_num) continue;
-
-		string name = gg.get_gene_id();
-
-		if(fixed_gene_name != "" && name != fixed_gene_name) continue;
-
-		splice_graph gr;
-		gg.build_splice_graph(gr);
-
-		catfish sc(name, gr);
-		sc.assemble();
-
-		if(output_file == "") continue;
-		gg.output_gtf(fout, sc.paths, algo);
-	}
-
-	if(output_file != "") fout.close();
-	return 0;
-}
-
-int assemble_sgr(const string &file)
+int assemble(const string &file)
 {
 	ifstream fin(file);
 	if(fin.fail()) return 0;
@@ -150,7 +115,7 @@ int assemble_sgr(const string &file)
 	return 0;
 }
 
-int format(const string &file)
+int transform(const string &file)
 {
 	genome g(file);
 
@@ -177,4 +142,3 @@ int format(const string &file)
 	fout2.close();
 	return 0;
 }
-

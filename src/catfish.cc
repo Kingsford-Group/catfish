@@ -1471,7 +1471,8 @@ int catfish::write(ofstream &fout)
 {
 	for(int i = 0; i < paths.size(); i++)
 	{
-		fout <<"path " << i + 1 << ", weight = " << (int)(paths[i].abd) << ", vertices = ";
+		//fout <<"path " << i + 1 << ", weight = " << (int)(paths[i].abd) << ", vertices = ";
+		fout << (int)(paths[i].abd) << " ";
 		for(int k = 0; k < paths[i].v.size(); k++)
 		{
 			fout << paths[i].v[k] << " ";
