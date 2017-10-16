@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT(catfish, v0.2.1, mingfu.shao@cs.cmu.edu)
+AC_INIT(catfish, 0.2.1, mingfu.shao@cs.cmu.edu)
 AM_INIT_AUTOMAKE()
 AC_CONFIG_SRCDIR([lib/graph/vertex_base.cc])
 AC_CONFIG_HEADERS([config.h])
