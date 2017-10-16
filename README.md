@@ -10,26 +10,24 @@ Latest release is [here](https://github.com/Kingsford-Group/catfish/releases/tag
 
 # Installation
 To install Catfish from the source code, you need to first download 
-Boost, setup the corresponding environmental variable,
+Boost if it has not been installed in your system,
 and then compile the source code of Catfish.
 
 ## Install Boost
-Download Boost [(license)](http://www.boost.org/LICENSE_1_0.txt)
-from (http://www.boost.org).
+If Boost has not been downloaded/installed in your system, download Boost
+[(license)](http://www.boost.org/LICENSE_1_0.txt) from (http://www.boost.org).
 Uncompress it somewhere (compiling and installing are not necessary).
-Set environment variable `BOOST_HOME` to indicate the directory of Boost.
-For example, for Unix platforms, do the following:
-```
-export BOOST_HOME="/directory/to/your/boost/boost_1_60_0"
-```
 
 ## Compile Catfish
-The compilation of `catfish` requires `automake` package.
-If `automake` has not been installed, on linux platform, do the following:
+Use the following to compile and install Catfish:
 ```
-sudo apt-get install automake
+./configure --prefix=/path/to/your/installation/directory --with-boost=/path/to/your/boost/directory
+make
+make install
 ```
-Then run the script `build.sh`, which will generate the executable file `src/src/catfish`.
+The `--prefix` argument for `configure` gives the directory where you would put the binary of Catfish.
+It is optional and the default is `/usr/local/bin` for most linux distributions.
+If Boost has been installed in your system, the `--with-boost` option for `./configure` can also be omitted.
 
 
 # Usage
