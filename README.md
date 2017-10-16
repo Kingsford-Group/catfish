@@ -5,7 +5,6 @@ Please refer to our paper at [here](http://biorxiv.org/content/early/2016/11/16/
 The datasets used in this paper can be found at [here](https://cmu.box.com/s/p687exyr279wny7fb2rb36wifvavvu3f).
 
 # Release
-Latest release is [here](https://github.com/Kingsford-Group/catfish/releases/tag/v0.1.4).
 Latest release of Catfish is [v0.2.1](https://github.com/Kingsford-Group/catfish/releases/tag/v0.2.1),
 including both [source code](https://github.com/Kingsford-Group/catfish/releases/download/v0.2.1/catfish-0.2.1.tar.gz),
 and [linux binary](https://github.com/Kingsford-Group/catfish/releases/download/v0.2.1/catfish-0.2.1_linux_x86_64.tar.gz)
