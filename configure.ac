@@ -13,6 +13,10 @@ AC_PROG_CC
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 
+# Check home directories for BOOST and assign CXXFLAGS
+AC_ARG_WITH(boost, AS_HELP_STRING([--with-boost], [home directory for boost]), BOOST_HOME=$withval, BOOST_HOME=)
+AS_IF([test "x$BOOST_HOME" != "x"], [AC_SUBST([CXXFLAGS], ["-I$BOOST_HOME $CXXFLAGS"])], [])
+
 # Checks for libraries.
 # FIXME: Replace `main' with a function in `-lgraph':
 AC_CHECK_LIB([graph], [main])

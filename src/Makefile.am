@@ -4,7 +4,7 @@ GTFDIR = ../lib/gtf
 UTILDIR = ../lib/util
 GRAPHDIR = ../lib/graph
 
-catfish_CPPFLAGS = -std=c++11 -I$(BOOST_HOME) -I$(GTFDIR) -I$(GRAPHDIR) -I$(UTILDIR)
+catfish_CPPFLAGS = -std=c++11 -I$(GTFDIR) -I$(GRAPHDIR) -I$(UTILDIR)
 catfish_LDFLAGS = -L$(GTFDIR) -L$(GRAPHDIR) -L$(UTILDIR) -pthread
 catfish_LDADD = -lgtf -lgraph -lutil
 
