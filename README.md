@@ -6,10 +6,16 @@ The datasets used in this paper can be found at [here](https://cmu.box.com/s/p68
 
 # Release
 Latest release is [here](https://github.com/Kingsford-Group/catfish/releases/tag/v0.1.4).
+Latest release of Catfish is [v0.2.1](https://github.com/Kingsford-Group/catfish/releases/tag/v0.2.1),
+including both [source code](https://github.com/Kingsford-Group/catfish/releases/download/v0.2.1/catfish-0.2.1.tar.gz),
+and [linux binary](https://github.com/Kingsford-Group/catfish/releases/download/v0.2.1/catfish-0.2.1_linux_x86_64.tar.gz)
+and [macOS binary](https://github.com/Kingsford-Group/catfish/releases/download/v0.2.1/catfish-0.2.1_macOS_10.10.tar.gz).
 
 
 # Installation
-To install Catfish from the source code, you need to first download 
+Download Catfish from
+[source code](https://github.com/Kingsford-Group/catfish/releases/download/v0.2.1/catfish-0.2.1.tar.gz).
+To install it, you need to first download 
 Boost if it has not been installed in your system,
 and then compile the source code of Catfish.
 
