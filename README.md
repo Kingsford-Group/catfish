@@ -30,31 +30,34 @@ Use the following to compile and install Catfish:
 make
 make install
 ```
-The `--prefix` argument for `configure` gives the directory where you would put the binary of Catfish.
+The `--prefix` argument for `configure` specifies the directory where you would put the binary of Catfish.
 It is optional and the default is `/usr/local/bin` for most linux distributions.
-If Boost has been installed in your system, the `--with-boost` option for `./configure` can also be omitted.
+If Boost has been installed in your system, the `--with-boost` argument for `configure` can also be omitted.
 
 
 # Usage
 
 The usage of `catfish` is:
 ```
-./catfish -i input.sgr/input.gtf -o output.out [-a algo]
+catfish -i <input.sgr|input.gtf> -o <output-file> [-a core|full|greedy] [-h] [-v]
 ```
 
 `-i` parameter specifies the input file.
-Catfish accepts two types of input file formats. The first one is `.sgr`,
+Catfish accepts two types of input file formats.
+The first one is `.sgr`,
 which specifies multiple directed acyclic graph. 
-Each graph starts with a header line marked with a `#`.
-The next line gives n, indicating the number of vertices in the graph. The vertices 
-are named from 0 to (n - 1), where vertex 0 has to be the source vertex
+Each graph starts with a header line marked with `#`.
+The next line gives n, indicating the number of vertices in this graph.
+The vertices are named from 0 to (n - 1), where vertex 0 has to be the source vertex
 and vertex (n - 1) has to be the sink vertex. 
 Each of the following line specifies an edge, which consists of three integers:
 the in-vertex, out-vertex and the weight of this edge. 
 The second input file format
 is `.gtf`. If it is this file format, Catfish will merge all transcripts
+(each transcript corresponds to a path of the graph, and the `expression`
+field in the gtf file gives the weight of this path)
 for each gene into a splice graph, and then try to decompose it.
-There are two such input example files at `bin`.
+There are two such input example files at `examples`.
 
 `-o` parameter specifies the output file, which will show the predicted paths
 and their associated abundances.
@@ -63,7 +66,12 @@ and their associated abundances.
 There are three options: {full, core, greedy}.
 With option of `core`, the program will only run the core algorithm to partly
 decompose the given splice graph, which will predict fewer paths but with
-higher accuracy. With option of `full`, the program will completely
-decompose the given splice graph, using greedy algorithm following the core part of the algorithm.
+higher accuracy.
+With option of `full`, the program will completely
+decompose the given splice graph, using greedy algorithm following the core algorithm.
 With option of `greedy`, the program will only use greedy algorithm to fully decompose
 the given splice graph. This parameter is optional, and its default value is `full`.
+
+`-h` parameter prints the usage of Catfish and exits.
+
+`-v` parameter prints the version of Catfish and exits.
