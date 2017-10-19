@@ -39,7 +39,7 @@ If Boost has been installed in your system, the `--with-boost` argument for `con
 
 The usage of `catfish` is:
 ```
-catfish -i input.sgr -o <output-file> [-a core|full|greedy] [-h] [-v]
+catfish -i <input.sgr> -o <output-file> [-a core|full|greedy] [-h] [-v]
 ```
 
 `-i` parameter specifies the input file,
