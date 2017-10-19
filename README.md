@@ -2,7 +2,8 @@
 
 Catfish implements an efficient heuristic to decompose a given flow into a set of minimum number of paths.  
 Please refer to our paper at [here](http://biorxiv.org/content/early/2016/11/16/087759).
-The datasets used in this paper can be found at [here](https://cmu.box.com/s/p687exyr279wny7fb2rb36wifvavvu3f).
+The tools, scripts, and datasets used in this manuscript can be found at 
+[catfishtest](https://github.com/Kingsford-Group/catfishtest).
 
 # Release
 Latest release of Catfish is [v0.2.1](https://github.com/Kingsford-Group/catfish/releases/tag/v0.2.1),
