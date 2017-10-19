@@ -39,12 +39,10 @@ If Boost has been installed in your system, the `--with-boost` argument for `con
 
 The usage of `catfish` is:
 ```
-catfish -i <input.sgr|input.gtf> -o <output-file> [-a core|full|greedy] [-h] [-v]
+catfish -i input.sgr -o <output-file> [-a core|full|greedy] [-h] [-v]
 ```
 
-`-i` parameter specifies the input file.
-Catfish accepts two types of input file formats.
-The first one is `.sgr`,
+`-i` parameter specifies the input file,
 which specifies multiple directed acyclic graph. 
 Each graph starts with a header line marked with `#`.
 The next line gives n, indicating the number of vertices in this graph.
@@ -52,12 +50,7 @@ The vertices are named from 0 to (n - 1), where vertex 0 has to be the source ve
 and vertex (n - 1) has to be the sink vertex. 
 Each of the following line specifies an edge, which consists of three integers:
 the in-vertex, out-vertex and the weight of this edge. 
-The second input file format
-is `.gtf`. If it is this file format, Catfish will merge all transcripts
-(each transcript corresponds to a path of the graph, and the `expression`
-field in the gtf file gives the weight of this path)
-for each gene into a splice graph, and then try to decompose it.
-There are two such input example files at `examples`.
+There is one such input example files at `examples`.
 
 `-o` parameter specifies the output file, which will show the predicted paths
 and their associated abundances.
