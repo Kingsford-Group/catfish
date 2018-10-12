@@ -1,7 +1,7 @@
 # Overview
 
 Catfish implements an efficient heuristic to decompose a given flow into a set of minimum number of paths.  
-Please refer to our paper at [here](10.1109/TCBB.2017.2779509).
+Please refer to our paper at [here](https://doi.org/10.1109/TCBB.2017.2779509).
 The tools, scripts, and datasets used in this manuscript can be found at 
 [catfishtest](https://github.com/Kingsford-Group/catfishtest).
 
